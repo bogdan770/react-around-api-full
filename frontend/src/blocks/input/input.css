@@ -1,0 +1,27 @@
+.input{
+    width: 358px;
+    border: none;
+    border-bottom: 1px solid rgba(192,192,192,0.8);
+    outline: none;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.input:nth-of-type(1){
+    margin-bottom: 30px;
+}
+
+.input:nth-of-type(2){
+    margin-bottom: 48px;
+}
+
+@media screen and (max-width: 500px) {
+    .input{
+        width: 238px;
+    }   
+}

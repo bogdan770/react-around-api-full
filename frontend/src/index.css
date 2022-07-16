@@ -1,0 +1,83 @@
+@import url(../src/blocks/normalize.css);
+@import url(../src/blocks/body/body.css);
+@import url(../src/blocks/page/page.css);
+@import url(../src/font/font.css);
+/* adding all basic CSS styles */
+
+@import url(../src/blocks/shell/shell.css);
+/* page CSS style */
+
+@import url(../src/blocks/header/header.css);
+@import url(../src/blocks/header/__logo/header__logo.css);
+/* heared CSS style */
+
+@import url(../src/blocks/profile/profile.css);
+@import url(../src/blocks/profile/__avatar/profile__avatar.css);
+@import url(../src/blocks/profile/__avatar-bth/profile__avatar-btn.css);
+@import url(../src/blocks/profile/__info/profile__info.css);
+@import url(../src/blocks/profile/__username/profile__username.css);
+@import url(../src/blocks/profile/__userprof/profile__userprof.css);
+@import url(../src/blocks/profile/__edit-button/profile__edit-button.css);
+@import url(../src/blocks/profile/__add-button/profile__add-button.css);
+/* profile CSS style */
+
+@import url(../src/blocks/elements/elements.css);
+@import url(../src/blocks/elements/__grid/elements__grid.css);
+@import url(../src/blocks/element/element.css);
+@import url(../src/blocks/element/__image/element__image.css);
+@import url(../src/blocks/element/__like/element__like.css);
+@import url(../src/blocks/element/__like/_active/element__like_active.css);
+@import url(../src/blocks/element/__like/__like-count/element__like-count.css);
+@import url(../src/blocks/element/__like-container/element__like-container.css);
+@import url(../src/blocks/element/__title/element__title.css);
+@import url(../src/blocks/element/__conteiner/element__conteiner.css);
+@import url(../src/blocks/element/__delete/element__delete.css);
+@import url(../src/blocks/element/__delete/_hidden/element__detele_hidden.css);
+/* elements CSS style */
+
+@import url(../src/blocks/footer/footer.css);
+@import url(../src/blocks/footer/__title/footer__title.css);
+/* footer CSS style */
+
+@import url(../src/blocks/popup/popup.css);
+@import url(../src/blocks/popup/_display/popup_display.css);
+@import url(../src/blocks/popup/__box/popup__box.css);
+@import url(../src/blocks/popup/__title/popup__title.css);
+@import url(../src/blocks/popup/__button/popup__button.css);
+@import url(../src/blocks/popup/__close/popup__close.css);
+@import url(../src/blocks/popup/__close-pic/popup__close-pic.css);
+@import url(../src/blocks/popup/__container/popup__container.css);
+@import url(../src/blocks/popup/__container/_type/popup__container_type_info-tool-tip.css);
+@import url(../src/blocks/popup/__container/_type/popup__container_type_image.css);
+
+
+/* popup and popup__form CSS style */
+
+@import url(../src/blocks/input/input.css);
+/* input CSS style */
+@import url(../src/blocks/image-popup/_display/image-popup_display.css);
+@import url(../src/blocks/image-popup/__button-close/image-popup__button-close.css);
+@import url(../src/blocks/image-popup/__image/image-popup__image.css);
+@import url(../src/blocks/image-popup/__title/image-popup__title.css);
+@import url(../src/blocks/popup/__box/-image/popup__box-image.css);
+
+@import url(../src/blocks/popup/__button/_disabled/popup__button_disabled.css);
+@import url(../src/blocks/popup/__input/_type/_error/popup__input_type_error.css);
+@import url(../src/blocks/popup/__error/popup__error.css);
+@import url(../src/blocks/popup/__error/_visible/popup__error_visible.css);
+@import url(../src/blocks/popup/__form/popup__form.css);
+
+@import url(../src/blocks/register/register.css);
+@import url(../src/blocks/register/__button/register__button.css);
+@import url(../src/blocks/register/__form/register__form.css);
+@import url(../src/blocks/register/__input/register__input.css);
+@import url(../src/blocks/register/__title/register__title.css);
+@import url(../src/blocks/register/__link/register__link.css);
+
+@import url(../src/blocks/header/__email/header__email.css);
+@import url(../src/blocks/header/__user-area/header__user-area.css);
+
+
+@import url(../src/blocks/enter/enter.css);
+@import url(../src/blocks/enter/__hover/enter__hover.css);
+

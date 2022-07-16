@@ -1,0 +1,26 @@
+.profile__info{
+    max-width: 415px;
+    display: grid;
+    flex-wrap: wrap;
+    margin-left: 30px;
+    align-items: center;
+    grid-template-areas:
+        "name edit"
+        "description description";
+}
+
+@media screen and (max-width: 960px){
+    .profile__info{
+        margin: 26px 0 36px;
+    }
+}
+
+
+@media screen and (max-width: 660px){
+    .profile__info{
+        max-width: 100%;
+        justify-content: center;
+        margin-top: 30px;
+
+    }
+}

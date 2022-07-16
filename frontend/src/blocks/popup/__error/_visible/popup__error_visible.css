@@ -1,0 +1,25 @@
+.popup__error_visible {
+  width: 350px;
+  display: block;
+  position: absolute;
+  top: 140px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: red;
+  align-self: flex-start;
+  margin-left: 35px;
+  text-align: left;
+}
+
+.popup__error_visible:last-of-type {
+  top: 190px;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__error_visible {
+    margin-left: 18px;
+  }
+}
