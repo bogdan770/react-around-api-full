@@ -1,8 +1,8 @@
-class middlewareError extends Error{
+class MiddlewareError extends Error {
   constructor(message, codeStatus) {
     super(message);
     this.codeStatus = codeStatus;
   }
 }
 
-module.exports = middlewareError;
+module.exports = MiddlewareError;

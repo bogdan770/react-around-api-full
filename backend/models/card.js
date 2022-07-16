@@ -15,27 +15,26 @@ const cardSchema = new mongoose.Schema({
     validate: {
       validator: validator.isURL,
       message: 'The "Link" needs to be a valid url',
-      },
-    },
-
-    owner: {
-      required: true,
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'user',
-    },
-
-    likes: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-        default: '',
-      },
-    ],
-    createdAt: {
-      type: Date,
-      default: Date.now,
     },
   },
-);
+
+  owner: {
+    required: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+  },
+
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
+      default: '',
+    },
+  ],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
 module.exports = mongoose.model('card', cardSchema);

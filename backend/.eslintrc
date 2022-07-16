@@ -5,6 +5,9 @@
     "arrow-body-style": "off",
     "object-curly-spacing": "off",
     "brace-style": "off",
-    "no-useless-escape": "off"
-  }
+    "no-useless-escape": "off",
+    "no-console": "off",
+    "no-else-return": "off",
+    "consistent-return": "off",
+    }
 }

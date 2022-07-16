@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const validator = require('validator');
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -20,11 +22,11 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: 'https://a.allegroimg.com/s512/11c2cd/fc4f0efe44ba9bb96d1ba120a184/Maskotka-Muppety-Kermit-40-cm',
     validate: {
-      validator: validator.isURL,
+      validator: (v) => validator.isURL(v),
       message: 'The "avatar" must be a valid url',
     },
   },
-  email:{
+  email: {
     type: String,
     required: true,
     unique: true,

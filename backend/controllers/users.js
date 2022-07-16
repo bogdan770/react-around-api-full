@@ -1,9 +1,14 @@
-const User = require('../models/user');
 const bcrypt = require('bcryptjs');
+
 const jwt = require('jsonwebtoken');
+
 const { DocumentNotFoundError } = require('./error');
-const middlewareError = require('../middlewares/middlewareError');
+
+const MiddlewareError = require('../middlewares/MiddlewareError');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
+
+const User = require('../models/user');
 
 const OK = 200;
 const BAD_REQUEST = 400;
@@ -19,27 +24,27 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      if(!user){
-        return next (new middlewareError('This user does not extist', NOT_FOUND));
+      if (!user) {
+        return next(new MiddlewareError('This user does not extist', NOT_FOUND));
       }
       const token = jwt.sign(
         { _id: user._id },
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         {
           expiresIn: '7d',
-        }
+        },
       );
       res.send({ data: user.toJSON(), token });
     })
     .catch(() => {
-      return next(new middlewareError('Incorrect email or password', BAD_METHOD));
+      return next(new MiddlewareError('Incorrect email or password', BAD_METHOD));
     });
 };
 
 const getUsers = (req, res, next) => {
   User.find({})
-    .orFail(()=> {
-      throw new middlewareError('User with this ID was found', NOT_FOUND)
+    .orFail(() => {
+      throw new MiddlewareError('User with this ID was found', NOT_FOUND);
     })
     .then((users) => res.status(OK).send(users))
     .catch(next);
@@ -51,23 +56,25 @@ const getUserById = (req, res, next) => {
     .then((user) => res.status(OK).send(user))
     .catch((err) => {
       if (err.name === 'CastError') {
-        return next(new middlewareError(badRequsetText, BAD_REQUEST));
+        return next(new MiddlewareError(badRequsetText, BAD_REQUEST));
       } if (err.statusCode === NOT_FOUND) {
-        return next(new middlewareError('Not found', NOT_FOUND));
+        return next(new MiddlewareError('Not found', NOT_FOUND));
       }
-      return next(new middlewareError(serverErrorText, SERVER_ERROR));
+      return next(new MiddlewareError(serverErrorText, SERVER_ERROR));
     });
 };
 
 const createUser = (req, res, next) => {
-  const{name, about, avatar, email, password} = req.body
+  const {
+    name, about, avatar, email, password,
+  } = req.body;
   User.findOne({ email })
     .then((user) => {
       if (user) {
-        return next(new middlewareError('The user with the provided email already exists', CONFLICT))
+        return next(new MiddlewareError('The user with the provided email already exists', CONFLICT));
       }
-      return bcrypt.hash(password, 10)
-      })
+      return bcrypt.hash(password, 10);
+    })
     .then((hash) => {
       User.create({
         name,
@@ -77,17 +84,18 @@ const createUser = (req, res, next) => {
         password: hash,
       })
         .then((user) => {
-          res.status(OK).send({ _id: user._id, email: user.email })
+          res.status(OK).send({ _id: user._id, email: user.email });
         })
         .catch((err) => {
           if (err.name === 'ValidationError') {
-            return next(new middlewareError(badRequsetText, BAD_REQUEST));
-          } else {
-            next(new middlewareError(serverErrorText, SERVER_ERROR));
+            return next(new MiddlewareError(badRequsetText, BAD_REQUEST));
+          }
+          else {
+            next(new MiddlewareError(serverErrorText, SERVER_ERROR));
           }
           return next(err);
         });
-      })
+    });
 };
 
 const updatedUserProfile = (req, res) => {
@@ -114,7 +122,7 @@ const updatedUserProfile = (req, res) => {
     });
 };
 
-const updatedUserAvatar = (req, res) => {
+const updatedUserAvatar = (req, res, next) => {
   const id = req.user._id;
   const { avatar } = req.body;
   User.findByIdAndUpdate(
@@ -127,9 +135,10 @@ const updatedUserAvatar = (req, res) => {
     .then((data) => res.status(OK).send({ data }))
     .catch((err) => {
       if (err.name === 'CastError') {
-        return next(new middlewareError(badRequsetText, BAD_REQUEST));
-      } else {
-        next(new middlewareError(serverErrorText, SERVER_ERROR));
+        return next(new MiddlewareError(badRequsetText, BAD_REQUEST));
+      }
+      else {
+        next(new MiddlewareError(serverErrorText, SERVER_ERROR));
       }
       return next(err);
     })
