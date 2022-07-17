@@ -13,7 +13,25 @@ cardsRouter.post('/', celebrate({
     link: Joi.string().required().uri(),
   }),
 }), createCard);
-cardsRouter.delete('/:cardId', deleteCard);
-cardsRouter.put('/:cardId/likes', likeCard);
-cardsRouter.delete('/:cardId/likes', dislikeCard);
+
+cardsRouter.delete('/:cardId', celebrate({
+  body: Joi.object().keys({
+    cardId: Joi.string().required().alphanum().length(24)
+      .hex(),
+  }),
+}), deleteCard);
+
+cardsRouter.put('/:cardId/likes', celebrate({
+  body: Joi.object().keys({
+    cardId: Joi.string().required().alphanum().length(24)
+      .hex(),
+  }),
+}), likeCard);
+
+cardsRouter.delete('/:cardId/likes', celebrate({
+  body: Joi.object().keys({
+    cardId: Joi.string().required().alphanum().length(24)
+      .hex(),
+  }),
+}), dislikeCard);
 module.exports = {cardsRouter};

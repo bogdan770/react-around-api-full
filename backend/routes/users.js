@@ -22,8 +22,25 @@ usersRouter.post('/signup', celebrate({
 usersRouter.use(auth);
 
 usersRouter.get('/', getUsers);
-usersRouter.get('/:id', getUserById);
+
+usersRouter.get('/:id', celebrate({
+  body: Joi.object().keys({
+    id: Joi.string().required().alphanum().length(24)
+      .hex(),
+  }),
+}), getUserById);
+
 usersRouter.post('/', createUser);
-usersRouter.patch('/me', updatedUserProfile);
-usersRouter.patch('/me/avatar', updatedUserAvatar);
+usersRouter.patch('/me', celebrate({
+  body: Joi.object().keys({
+    name: Joi.string().required().min(2).max(30),
+    about: Joi.string().required().min(2).max(30),
+  }),
+}), updatedUserProfile);
+
+usersRouter.patch('/me/avatar', celebrate({
+  body: Joi.object().keys({
+    avatar: Joi.string().required().uri(),
+  }),
+}), updatedUserAvatar);
 module.exports = {usersRouter};

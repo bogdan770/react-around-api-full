@@ -87,8 +87,8 @@ const createUser = (req, res, next) => {
           res.status(OK).send({ _id: user._id, email: user.email });
         })
         .catch((err) => {
-          if (err.name === 'ValidationError') {
-            return next(new MiddlewareError(badRequsetText, BAD_REQUEST));
+          if (err.name === 'MongoServerError' && err.code === 11000) {
+            return next(new MiddlewareError('User already exists', CONFLICT));
           }
           else {
             next(new MiddlewareError(serverErrorText, SERVER_ERROR));
